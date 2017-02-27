@@ -1,0 +1,61 @@
+{block title}Adresy rozvozů{/block}
+{block left-column}
+{/block}
+{block content}
+<h1>Adresy rozvozů</h1>
+<table id="addresses" class="view" cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th style="width: 300px"><span>Jméno</span></th>
+        <th style="width: 400px"><span>Adresa</span></th>
+        <th style="width: 70px"><span>Rozvoz</span></th>
+        <th><span>Telefon</span></th>
+        <th><span>Email</span></th>
+        <th class="no-padding" style="width: 80px;"><span>Objednávky</span></th>
+        <th class="no-padding" style="width: 50px;"><span>Obědy</span></th>
+      </tr>
+    </thead>
+    <tbody>
+	{foreach $addresses as $address}
+        <tr>
+            <td>{$address['person_name']}</td>
+            <td>{$address['address']}</td>
+            <td><span></span>
+                <select name="cartages[{$address['id']}]">
+                    <option value=""></option> 
+                    {foreach $cartages as $cartage}
+                        <option{if $address['cartage_id'] == $cartage->id} selected="selected"{/if} value="{$cartage->id}">{$cartage->abbreviation}</option> 
+                    {/foreach}
+                </select>
+            </td>
+            <td>{$address['phone']}</td>
+            <td>{$address['email']}</td>
+            <td style="text-align: center;">{$address->related("order")->count()}</td>
+            <td style="text-align: center;">{$address->related("order")->sum("lunch_count")}</td>
+        </tr>
+    {/foreach}
+    </tbody>
+</table>
+
+{/block}
+{block scripts}
+{include parent}
+  <script src="{$basePath}/js/jquery-ui-all.min.js"></script>
+  <script src="{$basePath}/js/jquery.tablesorter.min.js"></script>
+  <script>      
+  $(function(){
+    $('#addresses').tablesorter(); 
+
+    $('select').change(function() {
+        var data_id = parseInt(this.name.match(/\d+/));
+        var cartage_id = $(this).val();
+        $('div.loading').fadeIn(300);
+        $.get({link setCartage!}, { "data_id": data_id,
+                                    "cartage_id": cartage_id });
+        $('div.loading').fadeOut(400);
+    });
+  });
+  </script>
+
+{/block}
+

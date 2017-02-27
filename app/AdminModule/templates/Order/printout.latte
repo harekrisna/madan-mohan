@@ -1,0 +1,94 @@
+{block title}Náhled objednávek pro tisk{/block}
+{block content}
+<style type="text/css">
+@page {
+  size: auto;   /* auto is the initial value */
+  margin: 45px 20px 65px 20px;
+}
+
+.printout tr {
+	cursor: move;
+}
+
+.ui-sortable-helper {
+	width: 800px !important;
+}
+
+.ui-sortable-helper td{
+	background-color: rgba(253,255,97,0.5) !important;
+}
+
+.ui-sortable-helper td:nth-child(1) {
+	width: 296px; 
+}
+
+.ui-sortable-helper td:nth-child(2) {
+	width: 84px; 
+}
+
+.ui-sortable-helper td:nth-child(3) {
+	width: 29px; 
+}
+
+.ui-sortable-helper td:nth-child(4) {
+	width: 342px; 
+}
+
+.ui-sortable-helper td:nth-child(5) {
+	width: 29px; 
+}
+
+.ui-sortable-helper td:nth-child(6) {
+	width: 300px; 
+}
+
+.ui-sortable-helper td:nth-child(7) {
+	width: 48px; 
+}
+</style>
+{foreach $cartages as $cartage}
+	{continueIf $cartage->count() == 0}
+<table class="printout">
+<thead>
+	<tr>
+		<th style="width: 300px;">Jméno</th>
+		<th style="width: 85px;">Telefon</th>
+		<th style="width: 30px;">Roz</th>
+		<th>Adresa</th>
+		<th style="width: 30px;">Poč</th>
+	</tr>
+</thead>
+<tbody>
+
+	{foreach $cartage as $order}
+<tr>
+	<td>{$order->order_data->person_name}</td>
+    <td>{$order->order_data->phone}</td>
+	<td>{ifset $order->cartage->cartage_name}{$order->cartage->abbreviation}{/ifset}</td>
+	<td>{$order->order_data->address}</td>
+	<td>{$order->lunch_count}</td>
+</tr>
+	{/foreach}
+<tr>
+	<td colspan="4"></td>
+	<td>{$cartage->sum("lunch_count")}</td>
+</tr>
+
+</tbody>
+</table>
+{/foreach}
+<div style="text-align: center;">
+<input type="button" id="print_button" onClick="window.print()" value="Tisk" />
+</div>
+  <script src="{$basePath}/js/jquery-ui-all.min.js"></script>
+  <script>      
+  
+  $(function(){
+	  $(".printout tbody").sortable();
+  });
+  
+  </script>
+{/block}  
+
+
+

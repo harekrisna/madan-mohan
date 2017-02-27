@@ -1,0 +1,49 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 11pt;
+	color: black;
+	background: none;
+	width: 100%;
+}
+
+a img { border: none; }
+
+table.printout {
+	width: 750px;
+	padding: 0;
+	margin-bottom: 20px;
+	border-spacing: 0;
+}
+
+.printout tr td {
+	border-top: 1px black solid;
+	border-left: 1px black solid;
+}
+
+
+.printout tr td:last-child {
+	border-right: 1px black solid;
+}
+
+.printout tr:last-child td {
+	border: 0px !important;
+	border-top: 1px black solid !important;
+	font-weight: bold;
+}
+
+.printout tr td:nth-child(2), .printout tr td:nth-child(3), .printout tr td:nth-child(5) {
+	text-align: center;
+}
+
+.printout tr td:nth-child(1), .printout tr td:nth-child(4){
+	padding-left: 5px;
+}
+
+
+input {
+	display: none;
+}
+
+#ajax-spinner {
+	display: none;
+}

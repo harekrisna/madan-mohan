@@ -1,0 +1,102 @@
+{var $robots = all}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+    <meta name="description" content="Rozvoz jídel Brno, rozvoz jídel, rozvoz levných jídel Brno, vegetariánské obědy, co k jídlu, indická kuchyně.">
+    <meta name="keywords" content="jídlo, rozvoz jídel Brno, Brno, vegetariánské jídlo, jídlo, obědy, rozvoz obědů">
+    <meta name="author" content="Frezzy"> 
+	<meta name="google-site-verification" content="I8upa1w_V3jD_kipAt-8lfFQPBkXx-PqvrnYTga9Uw8" />
+	<title>{block title|striptags}{/block} | Madan Mohan</title>
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css">
+	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+	<link rel="stylesheet" href="{$basePath}/css/bjqs.css" type="text/css" />
+	{block head}{/block}
+</head>
+<body>
+	<script> document.documentElement.className+=' js' </script>
+	<div class="container">
+	<a href="{link Home:default}" class="head-logo"></a>
+    <div class="menu-bar">
+      <a {ifCurrent Menu:order}class="current" {/ifCurrent}href="{link Menu:order}">OBJEDNAT OBĚD</a>
+      <ul>
+        <li><a {ifCurrent Home:*}class="current" {/ifCurrent}href="{link Home:default}"><h1>rozvoz jídel Brno</h1></a></li>
+        <li><a {ifCurrent Menu:default}class="current" {/ifCurrent}href="{link Menu:default}">menu</a></li>
+        <li><a {ifCurrent Articles:*}class="current" {/ifCurrent}href="{link Articles:default}">články</a></li>
+        <li><a {ifCurrent Vegetable:*}class="current" {/ifCurrent}href="{link Vegetable:default}">zelenina</a></li>
+        <li><a {ifCurrent Contact:*}class="current" {/ifCurrent}href="{link Contact:default}">kontakt</a></li>
+      </ul>  
+    </div>
+    {block left_column}
+    <div class="left-column">
+      <div id="slideshow">
+        <div class="slide1" />  
+        <div class="slide2" />  
+        <div class="slide3" />  
+        <div class="slide4" />
+        <div class="slide5" />  
+        <div class="slide6" />  
+        <div class="slide7" />  
+        <div class="slide8" />
+        <div class="slide9" />
+      </div>
+    </div>
+    {/block}
+    {include content}
+    <div class="footer">
+      <div class="footer-bars-container">
+        <div class="orders">
+          <h2>Rozvoz jídel Brno</h2>
+          <p>603 564 978<br />rozvoz@madanmohan.cz</p>
+        </div>
+        <div class="share">
+          <p><span>Sdílet</span></p>
+            <div class="follow-links">
+              <a href="http://www.facebook.com/sharer.php?u=http://www.madanmohan.cz" class="facebook" target="_blank">f</a>
+              <a href="http://twitter.com/share?url=http://www.madanmohan.cz" target="_blank" class="twitter">t</a>
+              <a href="http://plus.google.com/share?url=http://www.madanmohan.cz" target="_blank" class="google-plus">g+</a>
+            </div>
+        </div>
+        <div class="prabhupad-bhavan">
+          <p><span>Projekt zajišťuje</span><br />
+          <a href="http://www.prabhupadbhavan.cz" target="_blank"><img src="{$basePath}/images/pb-logo.png" alt="logo" /><br />
+          prabhupadbhavan.cz</a></p>
+        </div>
+        <div class="copyright">&copy; 2015 Madan Mohan<h3>rozvoz jídel Brno</h3>design by rasika.sks</div>
+        <div class="mahamantra"><p>Haré Kršna Haré Kršna Kršna Kršna Haré Haré Haré Ráma Haré Ráma Ráma Ráma Haré Haré &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></p></div>
+      </div>
+    </div>
+  </div>
+
+
+  {block scripts}
+	<script src="{$basePath}/js/jquery.js"></script>
+	<script src="{$basePath}/js/netteForms.js"></script>
+	<script src="{$basePath}/js/main.js"></script>
+    <script src="{$basePath}/js/jquery-ui.min.js"></script>
+  <script type="text/javascript">
+     jQuery(document).ready(function($) {
+          $("#slideshow div:gt(0)").hide();  
+          setInterval(function() {
+              var current = $('#slideshow div:visible');  
+              var next = current.next().length ? current.next() : $('#slideshow div:eq(0)');  
+              current.fadeOut(1500);
+              next.fadeIn(1500);
+        }, 5000);    
+     });
+
+  (function(i,s,o,g,r,a,m){
+  i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54133924-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	{/block}
+</body>
+</html>

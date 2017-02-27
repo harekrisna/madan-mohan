@@ -1,0 +1,69 @@
+{block title}Kontakt{/block}
+{block content}
+<div id="main">
+ <div n:foreach="$flashes as $flash" class="flash">{$flash->message}</div>
+	<div id="contact">
+	<img src="{$basePath}/images/mm-title.png" />
+	<p>výroba a rozvoz vegetariánských obědů Prabhupád Bhavan ič 73635618<br />provozovna Góvinda Olomouc ič 73632325</p>
+<br />
+<p style="font-size:16px; margin: 0px">OBJEDNÁVKY A ROZVOZ</p>
+<table>
+<tr><td>(Brno sever):</td><td>Madan Móhan sever</td><td>+420 737 928 763</td><td>rozvoz@madanmohan.cz</td></tr>
+<tr><td>(Brno jih):</td><td>Madan Móhan jih</td><td>+420 603 564 978</td><td>rozvoz@madanmohan.cz</td></tr>
+</table>
+	<h1>Kontaktní formulář</h1>
+    {form contactForm}
+    {control $form errors}
+    <table> 
+      <tr>
+	  	<td>{input name }</td>
+	  </tr>
+      <tr>
+	  	<td>{input email }</td>
+	  </tr>
+      <tr>
+	  	<td style="width: 450px;">{input text }</td><td><div class="send-button">ODESLAT</div></td>
+	  </tr>
+    </table>
+    {/form}
+	</div>
+</div>
+{/block}
+{block scripts}
+{include parent}
+<script>
+    $("input[name=name]")
+    .focusin(function() {
+        if($(this).val() == "Jméno")
+            $(this).val("");
+    })
+    .focusout(function() {
+        if($(this).val() == "")
+            $(this).val("Jméno");
+    });
+    
+    $("input[name=email]")
+    .focusin(function() {
+        if($(this).val() == "e-mail")
+            $(this).val("");
+    })
+    .focusout(function() {
+        if($(this).val() == "")
+            $(this).val("e-mail");
+    });
+    
+    $("textarea")
+    .focusin(function() {
+        if($(this).val() == "Vaše zpráva")
+            $(this).val("");
+    })
+    .focusout(function() {
+        if($(this).val() == "")
+            $(this).val("Vaše zpráva");
+    });
+
+    $('.send-button').click(function () {
+        $('form#frm-contactForm').submit();
+    });
+</script>
+{/block}

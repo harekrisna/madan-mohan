@@ -1,0 +1,96 @@
+{block title}Menu{/block}
+{block head}
+{include parent}
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/jquery-ui.css">
+{/block}
+{block content}
+<div id="main">
+	<div class="week-navigation">
+	{if $show_next_week}
+        <div id="week-button-prev" class="week-button{if $start_slide == 0} actual{/if}"></div>
+	    <div class="triangle triangle-{$start_slide ? right : left}"></div> 
+		<div id="week-button-next" class="week-button{if $start_slide == 1} actual{/if}"></div>	
+    {else}
+	    <div id="week-button-actual" class="week-button">{$week_title}</div>
+	{/if}
+	</div>
+
+    <ul id="menu-container" style="visibility: hidden;">
+        <li>
+            <table id="menu">
+                {foreach $lunch as $day}
+                <tr>
+                    <td><div{if $today == $iterator->counter} class="today"{/if}>{$day['abbr']}</div></td>
+                    <td>
+                    {if $day['nocook']}
+                        <span>nevaříme</span>
+                    {else}
+                        <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
+                        {foreach $day['preparation'] as $preparation}
+                            <li n:tag-if="$preparation != ''">{$preparation}</li>
+                        {/foreach}
+                        </ul>
+                    {/if}
+                    </td>
+                </tr>
+                {/foreach}
+            </table>     
+        </li>
+        <li>
+            <table id="next-menu">
+                {foreach $lunch_next_week as $day}
+                <tr>
+                    <td><div{if $today == $iterator->counter} class="today"{/if}>{$day['abbr']}</div></td>
+                    <td>
+                    {if $day['nocook']}
+                        <span>nevaříme</span>
+                    {else}
+                        <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
+                        {foreach $day['preparation'] as $preparation}
+                            <li n:tag-if="$preparation != ''">{$preparation}</li>
+                        {/foreach}
+                        </ul>
+                    {/if}
+                    </td>
+                </tr>
+                {/foreach} 
+            </table> 
+        </li>
+    </ul>
+</div>
+{/block}
+{block scripts}
+{include parent}
+  <script src="{$basePath}/js/jquery.bxslider.min.js"></script>
+  <script src="{$basePath}/js/jquery-ui-all.min.js"></script>
+  <script>
+  	$(document).tooltip({
+		position: { my: "left+10 top-10"}
+	});
+    $('#menu-container').bxSlider({
+      nextSelector: '#week-button-next',
+      prevSelector: '#week-button-prev',
+      nextText: {$next_week_title},
+      prevText: {$week_title},
+      infiniteLoop: false,
+      hideControlOnEnd: true,
+      pager: false,
+	  slideWidth: 650,
+	  startSlide: {$start_slide},
+      onSlideNext: function($slideElement, oldIndex, newIndex){
+		$('#week-button-prev a').animate({l}color: '#ff9933'{r}, 500);
+		$('#week-button-next a').animate({l}color: '#999933'{r}, 500);
+        $("div.triangle").toggleClass("rotate-triangle");
+      }, 
+      onSlidePrev: function($slideElement, oldIndex, newIndex){
+		$('#week-button-prev a').animate({l}color: '#999933'{r}, 500);
+		$('#week-button-next a').animate({l}color: '#ff9933'{r}, 500);
+        $("div.triangle").toggleClass("rotate-triangle");
+      },
+      onSliderLoad: function(){
+        $('#menu-container').css("visibility", "visible");
+      }
+    });
+  </script>
+{/block}
+

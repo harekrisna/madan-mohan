@@ -1,0 +1,46 @@
+{block title}Odkazy{/block}
+{block content}
+<div id="main">
+    <div class="link-box">
+      <div class="pb-logo"></div>
+      <span>Prabhupad Bhavan</span>
+      <a href="http://www.prabhupadbhavan.cz">www.prabhupadbhavan.cz</a>
+    </div>
+    <div class="link-box">
+      <div class="fkd-logo"></div>
+      <span>Farma Krišnův dvůr</span>
+      <a href="http://www.krisnuvdvur.cz">www.krisnuvdvur.cz</a>
+    </div>
+    <div class="link-box">
+      <div class="govinda-logo"></div>
+      <span>Góvinda</span>
+      <a href="http://www.govinda.cz">www.govinda.cz</a>
+    </div>
+    <div class="link-box">
+      <div class="goolo-logo"></div>
+      <span>Góvinda Olomouc</span>
+      <a href="http://www.govinda-olomouc.cz">www.govinda-olomouc.cz</a>
+    </div>
+    <div class="link-box">
+      <div class="balarama-logo"></div>
+      <span>Balarama</span>
+      <a href="http://www.balarama.cz">www.balarama.cz</a>
+    </div>
+</div>
+{/block}
+{block scripts}
+{include parent}
+  <script type="text/javascript">
+    $('div.link-box').click(function() {
+      var href = $(this).children("a").attr("href");
+      var win=window.open(href, '_blank');
+      win.focus();
+    });
+        
+    $('#links a').click(function() {
+    	var win = window.open($(this).attr("href"), '_blank');
+		win.focus();
+      	return false;
+    });
+  </script>
+{/block}

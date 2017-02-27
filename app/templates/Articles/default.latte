@@ -1,0 +1,34 @@
+{block title}Články{/block}
+{block content}
+<div id="main">
+    <div class="article-link">
+      <div class="vege"></div>
+      <h1><a href="article/vegetarianstvi">Vegetariánství</a></h1>
+      <p>Většina vegetariánů jsou lidé, kteří chápou, že chceme-li přispět k mírumilovnější společnosti, musíme nejprve vyřešit problém násilí ve svých vlastních srdcích. Není tedy překva...</p>
+    </div>
+    <div class="article-link">
+      <div class="farma"></div>
+      <h1><a href="article/farma-krisnuv-dvur">Farma Krišnův Dvůr</a></h1>
+      <p>Farma Krišnův Dvůr se rozkládá uprostřed polí, luk a lesů překrásné podblanické krajiny. Toto nádherné místo láká nejen k zemědělství, ale i k odpočinku, relaxaci, meditaci...</p>
+    </div>
+    <div class="article-link">
+      <div class="prabhupada"></div>
+      <h1><a href="article/srila-prabhupada">Šríla Prabhupáda</a></h1>
+      <p>Šrí Šrímad A.Č. Bhaktivédánta Svámí Prabhupáda přišel na tento svět 1. září 1896 v Kalkatě, v Indii. Svého duchovního mistra, Šrílu Bhaktisiddhántu Sarasvatího Gósvámího, potkal...</p>
+    </div>
+    <div class="article-link">
+      <div class="mantra"></div>
+      <h1><a href="article/mahamantra">Mahámantra</a></h1>
+      <p>Zpívání transcendentální vibrace Haré Kršna, Haré Kršna, Kršna Kršna, Haré Haré, Haré Ráma, Haré Ráma, Ráma Ráma, Haré Haré je vznešenou metodou pro obnovení našeho transcen...</p>
+    </div>
+</div>
+{/block}
+{block scripts}
+{include parent}
+  <script type="text/javascript">
+    $('div.article-link').click(function() {
+      var href = $(this).children("h1").children("a").attr("href");
+      window.location.href = href;
+    });
+  </script>
+{/block}

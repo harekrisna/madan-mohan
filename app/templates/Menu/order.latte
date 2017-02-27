@@ -1,0 +1,390 @@
+﻿{block title}Objednat oběd{/block}
+{block head}
+{include parent}
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/jquery-ui.css">
+{/block}
+{block left_column}{/block}
+{block content}
+<div id="main-wide">
+	<div class="week-navigation-order">
+	{if $show_next_week}
+        <div id="week-button-prev" class="week-button{if $start_slide == 0} actual{/if}"></div>
+	    <div class="triangle triangle-{$start_slide ? right : left}"></div> 
+		<div id="week-button-next" class="week-button{if $start_slide == 1} actual{/if}"></div>	
+    {else}
+	    <div id="week-button-actual-order" class="week-button">{$week_title}</div>
+    {/if}
+	</div>
+
+    {form orderForm}
+    <ul id="order-menu-container" style="visibility: hidden;">
+        <li>
+            <table id="order-table" class="order-table">
+                {foreach $lunch as $day}
+                <tr>
+                    <td class="day-circle"><div{if $today == $iterator->counter} class="today"{/if}>{$day['abbr']}</div></td>
+                    <td>
+                    {if $day['nocook']}
+                        <span class="nocook">nevaříme</span>
+                    {else}
+                        <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
+                        {foreach $day['preparation'] as $preparation}
+                            <li n:tag-if="$preparation != ''">{$preparation}</li>
+                        {/foreach}
+                        </ul>
+            <!--                        
+			{if $day['abbr'] == "Čt" || $day['abbr'] == "Pá"}
+				<div style="font-size:12px;color:#EE0000;clear: both">z technických důvodů rozvážíme pouze Brno Střed a Brno Jih</div>
+			{/if}
+			-->
+                    {/if}
+                    </td>
+                    {var $input = "this_week-{$day['name']}"}
+                    <td class="count">{input $input}</td>
+                    {if $day['nocook']}
+                        <td class="input-arrows"></td>
+                        <td class="day-count"><span class="closed"></span></td>
+                    {elseif $day['disabled']}
+                        <td class="input-arrows"></td>
+                        <td class="day-count"><span class="closed">skončeno</span></td>
+                    {else}
+                        <td class="input-arrows"><div class="arrow-increase"></div><div class="arrow-decrease"></div></td>
+                        <td class="day-count">
+                            <div>porcí</div>
+                            <div>(<span>0</span>,- Kč)</div>
+                        </td>
+                    {/if}
+                </tr>
+                {/foreach}
+            </table>
+        </li>
+        <li>
+            <table id="order-table-next" class="order-table">
+                {foreach $lunch_next_week as $day}
+                <tr>
+                    <td class="day-circle"><div{if $today == $iterator->counter} class="today"{/if}>{$day['abbr']}</div></td>
+                    <td>
+                    {if $day['nocook']}
+                        <span class="nocook">nevaříme</span>
+                    {else}
+                        <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
+                        {foreach $day['preparation'] as $preparation}
+                            <li n:tag-if="$preparation != ''">{$preparation}</li>
+                        {/foreach}
+                        </ul>
+                    {/if}
+                    {var $input = "next_week-{$day['name']}"}
+                    <td class="count">{input $input}</td>
+                    {if $day['nocook']}
+                        <td class="input-arrows"></td>
+                        <td class="day-count"><span class="closed"></span></td>
+                    {else}
+                        <td class="input-arrows"><div class="arrow-increase"></div><div class="arrow-decrease"></div></td>
+                        <td class="day-count">
+                            <div>porcí</div>
+                            <div>(<span>0</span>,- Kč)</div>
+                        </td>
+                    {/if}
+                </tr>
+                {/foreach}
+            </table>
+            
+        </li>
+    </ul>
+    <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{!$flash->message}</div>
+    <div id="order_form_container">
+		<div class="sum-label">cena<br />celkem</div>
+		<div id="sum-price"><span id="sum-price-label">0</span>,-</div>
+		<div>{input surname }{input address }{input phone }{input email}{input timestamp}</div>
+		<a id="popup_button">Kam rozvážíme?</a>
+		<div class="order-button">OBJEDNAT</div>
+    </div>
+    <style>
+		div#main-wide {
+			height: 600px;
+		}
+	</style>
+    <!--<div class="footnote" style="font-weight: bold; font-size: 18px;">*V pátek 20.2 rozvážíme obědy pouze do městských částí Jih, Modřice, Černovice.</div>-->
+    <div class="footnote" style="position: relative;"><span style="color: #ff9933; font-size: 31px; animation: blinker 1s linear infinite;">Objednávky na týž den přijímáme do <span class="bold">9:15 hod</span>!</span>
+	    <br/>Přednostně vyřizujeme rozvoz do městských částí Střed a Jih. Do ostatních městských částí dle domluvy. <br />Přijímáme pouze stravenky Sodexo.
+        <div class="allergen-info">
+            <span>Informace o alergenech.</span>
+            <div class="bold">Jídla mohou obsahovat tyto alergeny:</div>
+            <p>celer, kešu ořechy, lepek, lískové ořechy, mandle, mléko a výrobky z&nbsp;něj, para ořechy, pekanové ořechy, pistácie, podzemnice olejná (arašídy), semena slunečnice, semínka hořčice, sezamová semena, vlašské ořechy.</p>
+        </div>
+    </div>
+    {/form}
+</div>
+<div id="overlay">
+    <div id="popup">
+        <a>Zavřít okno</a>
+        <img src="{$basePath}/images/kam-rozvazime.jpg" />
+    </div>
+</div>
+{/block}
+{block scripts}
+{include parent}	
+  <script src="{$basePath}/js/jquery.bxslider.min.js"></script>
+  <script src="{$basePath}/js/jquery-ui-all.min.js"></script>
+  <script>
+      
+    $("#popup_button").click(function(event) {
+        Event.prev
+        var overlay = $('#overlay');
+        
+        $('body').prepend(overlay);
+        
+        $(overlay).fadeIn();
+        $(overlay).css('display', 'flex');
+        
+        $(overlay).click(function() {
+           $(this).fadeOut(); 
+        });
+        
+        return false;
+    });
+    
+  	$(".footnote").tooltip({
+		position: { my: "left+10 top-10"}
+	}); 
+ 
+    var surname = $("input[name=surname]");
+    var address = $("input[name=address]");
+    var phone = $("input[name=phone]");
+    var email = $("input[name=email]");
+        
+    var monday = $('input[name=monday]');
+    var tuesday = $('input[name=tuesday]');
+    var wednesday = $('input[name=wednesday]');
+    var thursday = $('input[name=thursday]');
+    var friday = $('input[name=friday]');
+
+{* 	schovávání a zobrazování labelů vstupních polí *}
+    $(surname).focusin(function() {  if( $(this).val() == "Jméno")   $(this).val("") })
+           .focusout(function() {    if( $(this).val() == "")        $(this).val("Jméno")});
+    
+    $(address).focusin(function() {  if( $(this).val() == "Adresa")  $(this).val("")})
+              .focusout(function() { if( $(this).val() == "")        $(this).val("Adresa")});
+
+    $(phone).focusin(function() {    if( $(this).val() == "Telefon") $(this).val("")})
+            .focusout(function() {   if( $(this).val() == "")        $(this).val("Telefon")}); 
+
+    $(email).focusin(function() {    if( $(this).val() == "e-mail")  $(this).val("")})
+            .focusout(function() {   if( $(this).val() == "")        $(this).val("e-mail")});
+
+{* 	odesílací tlačítko *}
+    $('.order-button').click(function () {
+{*		kontrola zadaných údajů *}
+        if(surname.val() == "Jméno" || surname.val() == "") {
+            alert("Prosím zadejte jméno.");
+            surname.val("");
+            surname.focus();
+            return;
+        }
+        if(address.val() == "Adresa" || address.val() == "") {
+            alert("Prosím zadejte adresu.");
+            address.val("");
+            address.focus();
+            return;
+        }
+        if(phone.val() == "Telefon" || phone.val() == "") {
+            alert("Prosím zadejte telefon.");
+            phone.val("");
+            phone.focus();
+            return;
+        }
+        if(phone.val().length < 11) {
+            alert("Telefon musí mít 9 číslic.");
+            phone.focus();
+            return;
+        }
+        
+        var is_some_order = false;
+        $(".order-table input:not(:disabled)").each(function() {
+            if($(this).val() != "" && $(this).val() != "0") {
+              is_some_order = true;
+              return false; //break each
+            }
+        }); 
+        
+        if(!is_some_order) {
+            alert("Prosím objednejte si obědy.");
+            return;
+        }
+        
+        $('form#frm-orderForm').submit();
+    });
+   
+{*	pole telefon přijímá pouze číslice a znak + *}
+    $("input[name=phone]").keypress(function (evt) {
+        var charCode = evt.which;
+        var value = $(this).val();
+  
+//        if(charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) && value.indexOf('+') == 0 && value.length == 11)
+//	       	return false;
+        
+		if (charCode == 43) {
+			if($(this).val().length != 0)
+	            return false;		
+        }
+        else if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+        	return false;
+    });
+
+{*	formátuje telefonní číslo při zadávání *}
+    $("input[name=phone]").keyup(function () {
+        var phone = $(this).val();
+        var sepphone = ("" + phone).replace(/(\d\d\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + " " });
+        $(this).val(sepphone);
+    });
+    
+{*	pole pro počet obědů přijímají jen dvoumístné číslice *}
+    $('.order-table input').keypress(function (evt){
+        var charCode = evt.which;
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) // pouze číslice
+            return false;
+        
+        if($(this).val().length >= 2 && // pouze 2 znaky
+           charCode != 8 && charCode != 0 // tab, backspace a sipky prijima
+          ) 
+        return false;
+        
+        var keyCode = evt.keyCode;
+		var count = parseInt($(this).val());
+        if (keyCode == 38) {
+      		var arrow = $(this).parent().next().find(".arrow-increase");
+			arrow.css("background-image", 'url("/images/arrow-up-hover.png")');
+			
+			if(isNaN(count))
+				count = 0;
+			if(count == 99)
+				return;
+			count++;
+			
+			$(this).val(count);	
+		}
+		
+		if (keyCode == 40) {
+      		var arrow = $(this).parent().next().find(".arrow-decrease");
+			arrow.css("background-image", 'url("/images/arrow-down-hover.png")');
+
+			if(isNaN(count))
+				count = 0;
+			if(count == 0)
+				return;
+			count--;
+			
+			$(this).val(count);	
+		}
+        count_price($(this));
+        
+    });
+    
+    $('.order-table .arrow-increase').click(function() {
+		var input = $(this).parent().prev().find("input");
+		var count = parseInt(input.val());
+		if(isNaN(count))
+			count = 0;
+		if(count == 99)
+			return;
+		count++;
+		input.val(count);		
+ 
+        count_price(input);
+    });
+    
+    $('.order-table .arrow-decrease').click(function() {
+		var input = $(this).parent().prev().find("input");
+		var count = parseInt(input.val());
+		if(isNaN(count))
+			count = 0;
+		if(count == 0)
+			return;
+		count--;
+		input.val(count);		
+ 
+        count_price(input);
+    });
+    
+    $('.order-table input').keyup(function (evt){
+        var keyCode = evt.keyCode;
+        if (keyCode == 38) {
+	   		var arrow = $(this).parent().next().find(".arrow-increase");
+			arrow.css("background-image", 'url("/images/arrow-up.png")');
+		}
+		if (keyCode == 40) {
+      		var arrow = $(this).parent().next().find(".arrow-decrease");
+			arrow.css("background-image", 'url("/images/arrow-down.png")');
+		}
+		count_price($(this));
+    });  
+    
+{*	vypočítá ceny obědů *}
+    function count_price(input) {
+        var lunch_price = 89;
+        var count = input.val();
+        var day_price = count * lunch_price;
+        input.parent().next().next().find('div span').html(day_price);
+        console.log(input.parent().next().next());
+        var total_price = 0;
+        $("#order-table input:not(:disabled), #order-table-next input").each(function() {
+            day_price = $(this).val() * lunch_price;
+            total_price += day_price;
+        });
+        
+        $('#sum-price-label').html(total_price);
+    }
+    
+{*	znemožňuje zmáčknout tab v políčku pro páteční počet obědů (přešlo to na pondělí následujícího dne a rozhodilo grafiku) *}
+    $('input#frm-orderForm-this_week-friday').keydown(function(objEvent) {
+        if (objEvent.keyCode == 9 && !objEvent.shiftKey) {  //tab pressed
+            objEvent.preventDefault(); // stops its action
+        }
+    });
+
+{*	znemožňuje zmáčknout shift + tab v políčku pro páteční počet obědů (přešlo to na pátek následujícího dne a rozhodilo grafiku) *}
+    $('input[name=surname]').keydown(function(objEvent) {
+        if (objEvent.keyCode == 9 && objEvent.shiftKey) {  //tab pressed
+            objEvent.preventDefault(); // stops its action
+        }
+    })
+
+{*	slider navigace pro aktuální a následující týden *}
+    $('#order-menu-container').bxSlider({
+      nextSelector: '#week-button-next',
+      prevSelector: '#week-button-prev',
+      nextText: {$next_week_title},
+      prevText: {$week_title},
+      infiniteLoop: false,
+      hideControlOnEnd: true,
+      pager: false,
+	  slideWidth: 650,
+	  startSlide: {$start_slide},
+      onSlideNext: function($slideElement, oldIndex, newIndex){
+		$('#week-button-prev a').animate({l}color: '#ff9933'{r}, 500);
+		$('#week-button-next a').animate({l}color: '#999933'{r}, 500);
+        $("div.triangle").toggleClass("rotate-triangle");
+      }, 
+      onSlidePrev: function($slideElement, oldIndex, newIndex){
+		$('#week-button-prev a').animate({l}color: '#999933'{r}, 500);
+		$('#week-button-next a').animate({l}color: '#ff9933'{r}, 500);
+        $("div.triangle").toggleClass("rotate-triangle");
+      },
+      onSliderLoad: function(){
+        $('#order-menu-container').css("visibility", "visible");
+        $('#order_form_container').css("display", "block");
+      }
+    });
+</script>
+    {if $ip == "94.112.79.165"}
+<script>
+        $('#frm-orderForm-this_week-wednesday').val("1");
+        $('#frm-orderForm-this_week-thursday').val("1");
+        $('#frm-orderForm-this_week-friday').val("1");
+        $('input[name=surname]').val("Tomáš Marný");
+        $('input[name=address]').val("Skoč do pole 16");
+        $('input[name=phone]').val("728 748 246");
+        $('input[name=email]').val("tomas.marny@gmail.com");
+</script>
+    {/if}
+{/block}
