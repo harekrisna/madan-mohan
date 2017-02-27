@@ -29,10 +29,21 @@ class RouterFactory
     	));		
     	
 
-		$router[] = new Route('objednat-obed', 'Menu:order');		
+		$router[] = new Route('objednat-obed', array(
+			'presenter' => 'Menu',
+			'action' => 'order',
+			'locale' => 'cs'
+		));
+
+		$router[] = new Route('en/order-meal', array(
+			'presenter' => 'Menu',
+			'action' => 'order',
+			'locale' => 'en'
+		));
+
 		$router[] = new Route('clanek/<id>', 'Articles:article');
-		
-		$router[] = new Route('<presenter>/<action>[/<id>]', array(
+
+		$router[] = new Route('<presenter>/<action>', array(
 			'presenter' => array(
 				Route::VALUE => "Home",
 				Route::FILTER_TABLE => array(
@@ -43,7 +54,22 @@ class RouterFactory
 				)
 			),
 			'action' => "default",
+			'locale' => "cs"
 		));
+
+		$router[] = new Route('<presenter>/<action>', array(
+			'presenter' => array(
+				Route::VALUE => "Home",
+				Route::FILTER_TABLE => array(
+					'articles' => 'Articles',
+					'contact' => 'Contact',
+					'vegetable' => 'Vegetable',
+					'brno-food' => 'Home',
+				)
+			),
+			'action' => "default",
+			'locale' => "en"
+		));		
 
 		return $router;
 	}

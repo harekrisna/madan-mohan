@@ -4,7 +4,7 @@ namespace App\Presenters;
 
 use Nette,
 	App\Model;
-
+use Nette\Diagnostics\Debugger;
 
 /**
  * Base presenter for all application presenters.
@@ -18,11 +18,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     protected $orderData;
     protected $lunch;
 
-
+    /** @persistent */
+    public $locale;
 	
 	protected function beforeRender()
 	{
 		$this->template->viewName = $this->view;
+		$this->template->locale = $this->locale;
 
 		$a = strrpos($this->name, ':');
 		if ($a === FALSE) {
@@ -49,4 +51,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->orderData = $this->context->orderData;
         $this->lunch = $this->context->lunch;
   }
+
+  	public function actionSetLanguage($locale) {
+  		Debugger::fireLog($locale);
+  		$this->locale = $locale;
+  		$this->redirect('default');
+  	}
 }
