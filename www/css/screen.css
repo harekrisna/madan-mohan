@@ -132,13 +132,21 @@ div.menu-bar {
 }
 
 .menu-bar .language-button {
-    background-size: 18px;
+    width: 50px;
+    background-size: 20px;
     background-repeat: no-repeat;
-    background-position: 4px 8px;
+    background-position: 4px 5px;
     letter-spacing: inherit;
     padding-right: 7px;
     margin-left: 10px;
     padding-left: 25px;
+}
+
+.menu-bar .language-button.cs {
+    background-image: url("../images/cs_flag.png");
+}
+
+.menu-bar .language-button.en {
     background-image: url("../images/en_flag.png");
 }
 

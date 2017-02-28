@@ -21,7 +21,8 @@
 	<div class="container">
 	<a href="{link Home:default}" class="head-logo"></a>
     <div class="menu-bar">
-      <a class="language-button" n:href="setLanguage, 'en'">English</a>
+      <a n:if="$locale == 'cs'" class="language-button en" n:href="setLanguage, 'en'">English</a>
+      <a n:if="$locale == 'en'" class="language-button cs" n:href="setLanguage, 'cs'">Česky</a>
       <a {ifCurrent Menu:order}class="current" {/ifCurrent}href="{link Menu:order}">OBJEDNAT OBĚD</a>
       <ul>
         <li><a {ifCurrent Home:*}class="current" {/ifCurrent}href="{link Home:default}"><h1>rozvoz jídel Brno</h1></a></li>

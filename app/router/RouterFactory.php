@@ -43,6 +43,20 @@ class RouterFactory
 
 		$router[] = new Route('clanek/<id>', 'Articles:article');
 
+		$router[] = new Route('<locale=en>/<presenter>/<action>', array(
+			'presenter' => array(
+				Route::VALUE => "Home",
+				Route::FILTER_TABLE => array(
+					'articles' => 'Articles',
+					'contact' => 'Contact',
+					'vegetable' => 'Vegetable',
+					'brno-food' => 'Home',
+				)
+			),
+			'action' => "default",
+			'locale' => "en"
+		));		
+
 		$router[] = new Route('<presenter>/<action>', array(
 			'presenter' => array(
 				Route::VALUE => "Home",
@@ -57,19 +71,6 @@ class RouterFactory
 			'locale' => "cs"
 		));
 
-		$router[] = new Route('<presenter>/<action>', array(
-			'presenter' => array(
-				Route::VALUE => "Home",
-				Route::FILTER_TABLE => array(
-					'articles' => 'Articles',
-					'contact' => 'Contact',
-					'vegetable' => 'Vegetable',
-					'brno-food' => 'Home',
-				)
-			),
-			'action' => "default",
-			'locale' => "en"
-		));		
 
 		return $router;
 	}
