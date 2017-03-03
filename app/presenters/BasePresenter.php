@@ -20,7 +20,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     protected $lunch;
 
    	/** @var Translator */
-    private $translator;
+    protected $translator;
 
     /** @persistent */
     public $locale;
@@ -39,8 +39,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 			$this->template->presenterName = substr($this->name, $a + 1);
 		}
 		
-		$this->translator = new Translator();
-		$this->translator->setLang($this->locale);
 		$this->template->setTranslator($this->translator);
 	}
 
@@ -58,10 +56,18 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->order = $this->context->order;
         $this->orderData = $this->context->orderData;
         $this->lunch = $this->context->lunch;
+
+        $this->translator = new Translator();
+		$this->translator->setLang($this->locale);
   }
 
-  	public function actionSetLanguage($lang) {
+  	public function handleSetLanguage($lang) {
   		$this->locale = $lang;
-  		$this->redirect('default', ['locale' => $lang]);
+  		$this->redirect($this->getAction(), ['locale' => $lang]);
   	}
+
+	public function flashMessage($message, $type = 'info')  {
+		$message = $this->translator->translate($message);
+		parent::flashMessage($message, $type);
+	}
 }

@@ -1,6 +1,5 @@
 {var $robots = all}
 <!DOCTYPE html>
-{dump $locale}
 <html lang="cs">
 <head>
 	<meta charset="utf-8">
@@ -21,9 +20,9 @@
 	<div class="container">
 	<a href="{link Home:default}" class="head-logo"></a>
     <div class="menu-bar">
-      <a n:if="$locale == 'cs'" class="language-button en" n:href="setLanguage, 'en'">English</a>
-      <a n:if="$locale == 'en'" class="language-button cs" n:href="setLanguage, 'cs'">Česky</a>
-      <a {ifCurrent Menu:order}class="current" {/ifCurrent}href="{link Menu:order}">{_'objednat oběd'}</a>
+      <a n:if="$locale == 'cs'" class="language-button en" n:href="setLanguage!, 'en'">English</a>
+      <a n:if="$locale == 'en'" class="language-button cs" n:href="setLanguage!, 'cs'">Česky</a>
+      <a class="order-menu-link" {ifCurrent Menu:order}class="current" {/ifCurrent}href="{link Menu:order}">{_'objednat oběd'}</a>
       <ul>
         <li><a {ifCurrent Home:*}class="current" {/ifCurrent}href="{link Home:default}"><h1>{_'rozvoz jídel Brno'}</h1></a></li>
         <li><a {ifCurrent Menu:default}class="current" {/ifCurrent}href="{link Menu:default}">menu</a></li>
@@ -67,7 +66,7 @@
           <a href="http://www.prabhupadbhavan.cz" target="_blank"><img src="{$basePath}/images/pb-logo.png" alt="logo" /><br />
           prabhupadbhavan.cz</a></p>
         </div>
-        <div class="copyright">&copy; 2015 Madan Mohan<h3>{_'rozvoz jídel Brno'}</h3>design by rasika.sks</div>
+        <div class="copyright">&copy; {? echo date('Y')} Madan Mohan<h3>{_'rozvoz jídel Brno'}</h3>design by rasika.sks</div>
         <div class="mahamantra"><p>Haré Kršna Haré Kršna Kršna Kršna Haré Haré Haré Ráma Haré Ráma Ráma Ráma Haré Haré &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></p></div>
       </div>
     </div>

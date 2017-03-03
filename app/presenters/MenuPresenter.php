@@ -20,7 +20,7 @@ class MenuPresenter extends BasePresenter {
                           "friday" => "Pá");
     
 	public function renderDefault() {	
-        $this->template->week_title = $this->menu->getWeekTitle();
+        $this->template->week_title = $this->menu->getWeekTitle(0, $this->locale);
         $this->template->lunch = $this->lunch->getWeekLunchs();
         
         $lunchs = $this->lunch
@@ -29,7 +29,7 @@ class MenuPresenter extends BasePresenter {
 
         if($lunchs->count() == 5) {
             $show_next_week = true;
-            $this->template->next_week_title = $this->menu->getWeekTitle(+1);
+            $this->template->next_week_title = $this->menu->getWeekTitle(+1, $this->locale);
             $this->template->lunch_next_week = $this->lunch->getWeekLunchs(+1);
         }
         else {
@@ -69,7 +69,7 @@ class MenuPresenter extends BasePresenter {
                 $lunchs[$day]['disabled'] = false;
         }
         
-        $this->template->week_title = $this->menu->getWeekTitle();
+        $this->template->week_title = $this->menu->getWeekTitle(0, $this->locale);
         $this->template->lunch = $lunchs;
 
         // DALŠÍ TÝDEN        
@@ -86,7 +86,7 @@ class MenuPresenter extends BasePresenter {
             }
             
             $show_next_week = true;
-            $this->template->next_week_title = $this->menu->getWeekTitle(+1);
+            $this->template->next_week_title = $this->menu->getWeekTitle(+1, $this->locale);
             $this->template->lunch_next_week = $lunchs_next_week;
         }
         else {
@@ -108,21 +108,20 @@ class MenuPresenter extends BasePresenter {
 
     protected function createComponentOrderForm(){
 	   	$form = new Nette\Application\UI\Form();
-	    
-	    $form->addText('surname', 'Jméno:', 30, 255)
-       	     ->setEmptyValue('Jméno')
-             ->setDefaultValue("Jméno");
-             
-		$form->addText('address', 'Adresa:', 30, 255)
-			 ->setEmptyValue('Adresa');
+	    $form->setTranslator($this->translator);
 
-   	    $form->addText('phone', 'Telefon:', 30, 18)
-			 ->setEmptyValue('Telefon');
+	    $form->addText('surname', 'Jméno', 30, 255)
+             ->addRule(Form::FILLED, 'Zadejte jméno prosím.');
 
-		$form->addText('email', 'e-mail:', 30, 255)
-			 ->setEmptyValue('e-mail')
+		$form->addText('address', 'Adresa', 30, 255)
+             ->addRule(Form::FILLED, 'Zadejte adresu prosím.');
+
+   	    $form->addText('phone', 'Telefon', 30, 18)
+             ->addRule(Form::FILLED, 'Zadejte telefon prosím.');
+
+		$form->addText('email', 'e-mail', 30, 255)
 			 ->addCondition($form::FILLED)
-			 	 ->addRule(Form::EMAIL, 'Zadejte platnou emailovou adresu');
+			 	 ->addRule(Form::EMAIL, 'Prosím zadejte platnou emailovou adresu.');
 		
 	    $this_week = $form->addContainer('this_week');
         $next_week = $form->addContainer('next_week');
@@ -233,12 +232,14 @@ class MenuPresenter extends BasePresenter {
         $email_template = new Nette\Templating\FileTemplate('../app/templates/Menu/order-email.latte');
         $email_template->registerFilter(new Nette\Latte\Engine);
         $email_template->registerHelperLoader('Nette\Templating\Helpers::loader');
+        $email_template->setTranslator($this->translator);
+
         $email_template->surname = $values['surname'];
         $email_template->address = $values['address'];
         $email_template->phone = $values['phone'];
         $email_template->email = $values['email'];
-        $email_template->week_title = $this->menu->getWeekTitle();
-        $email_template->next_week_title = $this->menu->getWeekTitle(1);
+        $email_template->week_title = $this->menu->getWeekTitle(0, $this->locale);
+        $email_template->next_week_title = $this->menu->getWeekTitle(1, $this->locale);
         $email_template->this_week = $this_week;
         $email_template->next_week = $next_week;
         $email_template->this_week_amount = $this_week_amount;
@@ -248,11 +249,10 @@ class MenuPresenter extends BasePresenter {
         if($values['email'] != "") {
             $from = $values['email'];
             
-            
             $mail = new Message;
             $mail->setFrom("Madan Móhan <mmrozvoz@gmail.com>")
                  ->addTo($values['email'])
-                 ->setSubject("Potvrzení objednávky obědů")
+                 ->setSubject($this->translator->translate("Potvrzení objednávky obědů"))
                  ->setHtmlBody($email_template);
                  
             $mailer = new SendmailMailer;
@@ -279,7 +279,7 @@ class MenuPresenter extends BasePresenter {
              
         $mailer = new SendmailMailer;
         $mailer->send($mail);        
-                    
+        
         $this->flashMessage('Vaše objednávka byla přijata. Děkujeme, dobrou chuť.', 'success');
         $this->redirect('order');
     }

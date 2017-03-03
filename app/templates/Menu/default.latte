@@ -5,25 +5,27 @@
 {/block}
 {block content}
 <div id="main">
-	<div class="week-navigation">
 	{if $show_next_week}
-        <div id="week-button-prev" class="week-button{if $start_slide == 0} actual{/if}"></div>
-	    <div class="triangle triangle-{$start_slide ? right : left}"></div> 
-		<div id="week-button-next" class="week-button{if $start_slide == 1} actual{/if}"></div>	
+    <div class="week-navigation-large">
+      <div id="week-button-prev" class="week-button{if $start_slide == 0} actual{/if}"></div>
+  	  <div class="triangle triangle-{$start_slide ? right : left}"></div> 
+  		<div id="week-button-next" class="week-button{if $start_slide == 1} actual{/if}"></div>	
+    </div>
     {else}
+    <div class="week-navigation">
 	    <div id="week-button-actual" class="week-button">{$week_title}</div>
+    </div>
 	{/if}
-	</div>
 
     <ul id="menu-container" style="visibility: hidden;">
         <li>
             <table id="menu">
                 {foreach $lunch as $day}
                 <tr>
-                    <td><div{if $today == $iterator->counter} class="today"{/if}>{$day['abbr']}</div></td>
+                    <td><div{if $today == $iterator->counter} class="today"{/if}>{_$day['abbr']}</div></td>
                     <td>
                     {if $day['nocook']}
-                        <span>nevaříme</span>
+                        <span>{_'nevaříme'}</span>
                     {else}
                         <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
                         {foreach $day['preparation'] as $preparation}
@@ -40,10 +42,10 @@
             <table id="next-menu">
                 {foreach $lunch_next_week as $day}
                 <tr>
-                    <td><div{if $today == $iterator->counter} class="today"{/if}>{$day['abbr']}</div></td>
+                    <td><div{if $today == $iterator->counter} class="today"{/if}>{_$day['abbr']}</div></td>
                     <td>
                     {if $day['nocook']}
-                        <span>nevaříme</span>
+                        <span>{_'nevaříme'}</span>
                     {else}
                         <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
                         {foreach $day['preparation'] as $preparation}

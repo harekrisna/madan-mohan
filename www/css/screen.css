@@ -58,6 +58,10 @@ div.menu-bar {
     margin: 10px 0px;
 }
 
+div.menu-bar .order-menu-link {
+    width: 160px;
+}
+
 .menu-bar ul {
   float: right;  
   padding: 0px;
@@ -462,8 +466,15 @@ div.week-navigation {
 	margin: 19px 0 15px 20px;
 }
 
+div.week-navigation-large {
+  width: 600px;
+  height: 30px;
+  margin: 19px 0 15px -18px;
+
+}
+
 div.week-navigation-order {
-	width: 550px;
+	width: 600px;
 	height: 30px;
 	margin: 29px 0 15px 15px;
 }
@@ -670,9 +681,14 @@ div.triangle-right {
     height: 20px; 
     margin-bottom: 7px;
     background-color: #fae9b7; 
-    color: #663200; 
+    color: #663200;
     padding-left: 5px;
 } 
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #663200; }
+input:-moz-placeholder, textarea:-moz-placeholder { color: #663200; }
+input::-moz-placeholder, textarea::-moz-placeholder { color: #663200; }
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #663200; }
 
 #contact textarea{ 
     border:solid 0px #d0cebd; 
@@ -699,6 +715,7 @@ div.triangle-right {
 }
 
 .send-button {
+    text-transform: uppercase;
     height: 53px;
     width: 85px;
     float: left;
@@ -922,10 +939,11 @@ td.day-count span.closed {
 
 .order-button {
     font-size: 14px;
+    text-transform: uppercase;
     height: 53px;
     margin-left: 30px;
     width: 85px;
-    float: left;
+    float: right;
     padding-top: 32px;
     text-align: center;
     letter-spacing: 1px;
@@ -1024,7 +1042,7 @@ div.footnote {
     font-style: italic;
     position: absolute;
     background-color: #FFFFFF;
-    width: 285px; 
+    width: 295px; 
     height: 25px; 
     overflow: hidden; 
     left: 446px; 

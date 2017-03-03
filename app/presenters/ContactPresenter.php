@@ -17,17 +17,16 @@ class ContactPresenter extends BasePresenter {
 	
     protected function createComponentContactForm(){
 	   	$form = new Nette\Application\UI\Form();
-	    
+
+	    $form->setTranslator($this->translator);
+
 	    $form->addText('name', 'Jméno', 30, 255)
-       	     ->setEmptyValue('Jméno')
              ->addRule(Form::FILLED, 'Zadejte jméno prosím.');
              
-		$form->addText('email', 'e-mail:', 30, 255)
-			 ->setEmptyValue('e-mail')
+		$form->addText('email', 'e-mail', 30, 255)
              ->addRule(Form::EMAIL, 'Prosím zadejte platnou emailovou adresu.');
 
-        $form->addTextArea('text', 'Vaše zpráva:', 45, 7)
-             ->setEmptyValue('Vaše zpráva')
+        $form->addTextArea('text', 'Vaše zpráva', 45, 7)
              ->addRule(Form::FILLED, 'Napište něco prosím.');
              
         $form->addSubmit('send', 'Odeslat');
@@ -54,9 +53,9 @@ class ContactPresenter extends BasePresenter {
              ->setHtmlBody($email_template);
         
         $mailer = new SendmailMailer;
-        $mailer->send($mail);
+        //$mailer->send($mail);
         $this->flashMessage('Váš komentář byl odeslán. Děkujeme.', 'success');
-        $this->redirect('default');
+        //$this->redirect('default');
     }
 }
 

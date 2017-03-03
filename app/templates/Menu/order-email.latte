@@ -85,12 +85,12 @@ table#order-table {
     </style>
 </head>
 <body>
-    <p>Dobrý den,</p>
-    <p>Vaše objednávka obědů Madan Mohan byla přijata.</p>
+    <p>{_'Dobrý den'},</p>
+    <p>{_'Vaše objednávka obědů Madan Mohan byla přijata'}.</p>
     <table>
-        <tr><td style="width: 50px;">Jméno:</td><td>{$surname}</td></tr>
-        <tr><td>Adresa:</td><td>{$address}</td></tr>
-        <tr><td>Telefon:</td><td>{$phone}</td></tr>
+        <tr><td style="width: 50px;">{_'Jméno'}:</td><td>{$surname}</td></tr>
+        <tr><td>{_'Adresa'}:</td><td>{$address}</td></tr>
+        <tr><td>{_'Telefon'}:</td><td>{$phone}</td></tr>
         {if $email != ""}<tr><td>e-mail:</td><td>{$email}</td></tr>{/if}
     </table>
     
@@ -101,7 +101,7 @@ table#order-table {
     </tr>
     {foreach $this_week as $day}
     <tr>
-        <td><div>{$day['abbr']}</div></td>
+        <td><div>{_$day['abbr']}</div></td>
         <td>
             <ul>
             {foreach $day['preparation'] as $preparation}
@@ -109,7 +109,7 @@ table#order-table {
             {/foreach}
             </ul>
         </td>
-        <td class="count">{$day['amount']} porcí ({$day['price']},- Kč)</td>
+        <td class="count">{$day['amount']} {_porcí} ({$day['price']},- Kč)</td>
     </tr>
     {/foreach}
     {/if}
@@ -120,7 +120,7 @@ table#order-table {
     </tr>
     {foreach $next_week as $day}
     <tr>
-        <td><div>{$day['abbr']}</div></td>
+        <td><div>{_$day['abbr']}</div></td>
         <td>
             <ul>
             {foreach $day['preparation'] as $preparation}
@@ -128,20 +128,20 @@ table#order-table {
             {/foreach}
             </ul>
         </td>
-        <td class="count">{$day['amount']} porcí ({$day['price']},- Kč)</td>
+        <td class="count">{$day['amount']} {_porcí} ({$day['price']},- Kč)</td>
     </tr>
     {/foreach}
     {/if}
     <tr>
 	  	<td></td>
 	  	<td></td>
-	  	<td class="sum">Cena celkem:<br />{$total_price},- Kč</td>
+	  	<td class="sum">{_'Cena celkem'}:<br />{$total_price},- Kč</td>
     </tr>
 </table>
 <hr />
 <div class="allergen-info">
-    <h2 style="font-size: 13px; font-weight: normal; margin: 0 0 2px 0;">Jídla mohou obsahovat tyto alergeny:</h2>
-    <p style="font-size: 12px; font-weight: normal; margin: 5px 0;">celer, kešu ořechy, lepek, lískové ořechy, mandle, mléko a výrobky z&nbsp;něj, para ořechy, pekanové ořechy, pistácie, podzemnice olejná (arašídy), semena slunečnice, semínka hořčice, sezamová semena, vlašské ořechy.</p>
+    <h2 style="font-size: 13px; font-weight: normal; margin: 0 0 2px 0;">{_'Jídla mohou obsahovat tyto alergeny'}:</h2>
+    <p style="font-size: 12px; font-weight: normal; margin: 5px 0;">{_'celer, kešu ořechy, lepek, lískové ořechy, mandle, mléko a výrobky z&nbsp;něj, para ořechy, pekanové ořechy, pistácie, podzemnice olejná (arašídy), semena slunečnice, semínka hořčice, sezamová semena, vlašské ořechy'}.</p>
 </div>
 <hr />
 Madan Móhan

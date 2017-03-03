@@ -22,10 +22,10 @@
             <table id="order-table" class="order-table">
                 {foreach $lunch as $day}
                 <tr>
-                    <td class="day-circle"><div{if $today == $iterator->counter} class="today"{/if}>{$day['abbr']}</div></td>
+                    <td class="day-circle"><div{if $today == $iterator->counter} class="today"{/if}>{_$day['abbr']}</div></td>
                     <td>
                     {if $day['nocook']}
-                        <span class="nocook">nevaříme</span>
+                        <span class="nocook">{_'nevaříme'}</span>
                     {else}
                         <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
                         {foreach $day['preparation'] as $preparation}
@@ -46,11 +46,11 @@
                         <td class="day-count"><span class="closed"></span></td>
                     {elseif $day['disabled']}
                         <td class="input-arrows"></td>
-                        <td class="day-count"><span class="closed">skončeno</span></td>
+                        <td class="day-count"><span class="closed">{_skončeno}</span></td>
                     {else}
                         <td class="input-arrows"><div class="arrow-increase"></div><div class="arrow-decrease"></div></td>
                         <td class="day-count">
-                            <div>porcí</div>
+                            <div>{_'porcí'}</div>
                             <div>(<span>0</span>,- Kč)</div>
                         </td>
                     {/if}
@@ -62,10 +62,10 @@
             <table id="order-table-next" class="order-table">
                 {foreach $lunch_next_week as $day}
                 <tr>
-                    <td class="day-circle"><div{if $today == $iterator->counter} class="today"{/if}>{$day['abbr']}</div></td>
+                    <td class="day-circle"><div{if $today == $iterator->counter} class="today"{/if}>{_$day['abbr']}</div></td>
                     <td>
                     {if $day['nocook']}
-                        <span class="nocook">nevaříme</span>
+                        <span class="nocook">{_'nevaříme'}</span>
                     {else}
                         <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
                         {foreach $day['preparation'] as $preparation}
@@ -81,7 +81,7 @@
                     {else}
                         <td class="input-arrows"><div class="arrow-increase"></div><div class="arrow-decrease"></div></td>
                         <td class="day-count">
-                            <div>porcí</div>
+                            <div>{_'porcí'}</div>
                             <div>(<span>0</span>,- Kč)</div>
                         </td>
                     {/if}
@@ -93,11 +93,18 @@
     </ul>
     <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{!$flash->message}</div>
     <div id="order_form_container">
-		<div class="sum-label">cena<br />celkem</div>
+		<div class="sum-label">{_'cena'}<br />{_'celkem'}</div>
 		<div id="sum-price"><span id="sum-price-label">0</span>,-</div>
-		<div>{input surname }{input address }{input phone }{input email}{input timestamp}</div>
-		<a id="popup_button">Kam rozvážíme?</a>
-		<div class="order-button">OBJEDNAT</div>
+		<div>
+            {dump $form['surname']->label}
+            {input surname, placeholder => $form['surname']->label->getText()}
+            {input address, placeholder => $form['address']->label->getText()}
+            {input phone, placeholder => $form['phone']->label->getText()}
+            {input email, placeholder => $form['email']->label->getText()}
+            {input timestamp}
+        </div>
+		<a id="popup_button">{_'Kam rozvážíme'}?</a>
+		<div class="order-button">{_'objednat'}</div>
     </div>
     <style>
 		div#main-wide {
@@ -105,20 +112,20 @@
 		}
 	</style>
     <!--<div class="footnote" style="font-weight: bold; font-size: 18px;">*V pátek 20.2 rozvážíme obědy pouze do městských částí Jih, Modřice, Černovice.</div>-->
-    <div class="footnote" style="position: relative;"><span style="color: #ff9933; font-size: 31px; animation: blinker 1s linear infinite;">Objednávky na týž den přijímáme do <span class="bold">9:15 hod</span>!</span>
-	    <br/>Přednostně vyřizujeme rozvoz do městských částí Střed a Jih. Do ostatních městských částí dle domluvy. <br />Přijímáme pouze stravenky Sodexo.
+    <div class="footnote" style="position: relative;"><span style="color: #ff9933; font-size: 31px;">{_'Objednávky na týž den přijímáme do'} <span class="bold">9:15 {_'hod'}</span>!</span>
+	    <br/>{_'Přijímáme pouze stravenky Sodexo'}.
         <div class="allergen-info">
-            <span>Informace o alergenech.</span>
-            <div class="bold">Jídla mohou obsahovat tyto alergeny:</div>
-            <p>celer, kešu ořechy, lepek, lískové ořechy, mandle, mléko a výrobky z&nbsp;něj, para ořechy, pekanové ořechy, pistácie, podzemnice olejná (arašídy), semena slunečnice, semínka hořčice, sezamová semena, vlašské ořechy.</p>
+            <span>{_'Informace o alergenech'}.</span>
+            <div class="bold">{_'Jídla mohou obsahovat tyto alergeny'}:</div>
+            <p>{_'celer, kešu ořechy, lepek, lískové ořechy, mandle, mléko a výrobky z&nbsp;něj, para ořechy, pekanové ořechy, pistácie, podzemnice olejná (arašídy), semena slunečnice, semínka hořčice, sezamová semena, vlašské ořechy'}</p>
         </div>
     </div>
     {/form}
 </div>
 <div id="overlay">
     <div id="popup">
-        <a>Zavřít okno</a>
-        <img src="{$basePath}/images/kam-rozvazime.jpg" />
+        <a>{_'Zavřít'}</a>
+            <img src="{$basePath}/images/kam-rozvazime.jpg" />
     </div>
 </div>
 {/block}
@@ -159,42 +166,29 @@
     var thursday = $('input[name=thursday]');
     var friday = $('input[name=friday]');
 
-{* 	schovávání a zobrazování labelů vstupních polí *}
-    $(surname).focusin(function() {  if( $(this).val() == "Jméno")   $(this).val("") })
-           .focusout(function() {    if( $(this).val() == "")        $(this).val("Jméno")});
-    
-    $(address).focusin(function() {  if( $(this).val() == "Adresa")  $(this).val("")})
-              .focusout(function() { if( $(this).val() == "")        $(this).val("Adresa")});
-
-    $(phone).focusin(function() {    if( $(this).val() == "Telefon") $(this).val("")})
-            .focusout(function() {   if( $(this).val() == "")        $(this).val("Telefon")}); 
-
-    $(email).focusin(function() {    if( $(this).val() == "e-mail")  $(this).val("")})
-            .focusout(function() {   if( $(this).val() == "")        $(this).val("e-mail")});
-
 {* 	odesílací tlačítko *}
     $('.order-button').click(function () {
 {*		kontrola zadaných údajů *}
         if(surname.val() == "Jméno" || surname.val() == "") {
-            alert("Prosím zadejte jméno.");
+            alert({_'Zadejte jméno prosím.'});
             surname.val("");
             surname.focus();
             return;
         }
         if(address.val() == "Adresa" || address.val() == "") {
-            alert("Prosím zadejte adresu.");
+            alert({_'Zadejte adresu prosím.'});
             address.val("");
             address.focus();
             return;
         }
         if(phone.val() == "Telefon" || phone.val() == "") {
-            alert("Prosím zadejte telefon.");
+            alert({_'Zadejte telefon prosím.'});
             phone.val("");
             phone.focus();
             return;
         }
         if(phone.val().length < 11) {
-            alert("Telefon musí mít 9 číslic.");
+            alert({_'Telefon musí mít 9 číslic.'});
             phone.focus();
             return;
         }
@@ -208,7 +202,7 @@
         }); 
         
         if(!is_some_order) {
-            alert("Prosím objednejte si obědy.");
+            alert({_'Prosím objednejte si obědy.'});
             return;
         }
         
