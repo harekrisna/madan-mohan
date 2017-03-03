@@ -5,6 +5,7 @@ namespace App\Presenters;
 use Nette,
 	App\Model;
 use Nette\Diagnostics\Debugger;
+use Translator;
 
 /**
  * Base presenter for all application presenters.
@@ -17,6 +18,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     protected $order;
     protected $orderData;
     protected $lunch;
+
+   	/** @var Translator */
+    private $translator;
 
     /** @persistent */
     public $locale;
@@ -34,6 +38,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 			$this->template->moduleName = substr($this->name, 0, $a + 1);
 			$this->template->presenterName = substr($this->name, $a + 1);
 		}
+		
+		$this->translator = new Translator();
+		$this->translator->setLang($this->locale);
+		$this->template->setTranslator($this->translator);
 	}
 
   protected function startup()	{
@@ -52,9 +60,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->lunch = $this->context->lunch;
   }
 
-  	public function actionSetLanguage($locale) {
-  		Debugger::fireLog($locale);
-  		$this->locale = $locale;
-  		$this->redirect('default');
+  	public function actionSetLanguage($lang) {
+  		$this->locale = $lang;
+  		$this->redirect('default', ['locale' => $lang]);
   	}
 }

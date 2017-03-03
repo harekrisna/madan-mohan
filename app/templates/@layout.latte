@@ -23,13 +23,13 @@
     <div class="menu-bar">
       <a n:if="$locale == 'cs'" class="language-button en" n:href="setLanguage, 'en'">English</a>
       <a n:if="$locale == 'en'" class="language-button cs" n:href="setLanguage, 'cs'">Česky</a>
-      <a {ifCurrent Menu:order}class="current" {/ifCurrent}href="{link Menu:order}">OBJEDNAT OBĚD</a>
+      <a {ifCurrent Menu:order}class="current" {/ifCurrent}href="{link Menu:order}">{_'objednat oběd'}</a>
       <ul>
-        <li><a {ifCurrent Home:*}class="current" {/ifCurrent}href="{link Home:default}"><h1>rozvoz jídel Brno</h1></a></li>
+        <li><a {ifCurrent Home:*}class="current" {/ifCurrent}href="{link Home:default}"><h1>{_'rozvoz jídel Brno'}</h1></a></li>
         <li><a {ifCurrent Menu:default}class="current" {/ifCurrent}href="{link Menu:default}">menu</a></li>
-        <li><a {ifCurrent Articles:*}class="current" {/ifCurrent}href="{link Articles:default}">články</a></li>
-        <li><a {ifCurrent Vegetable:*}class="current" {/ifCurrent}href="{link Vegetable:default}">zelenina</a></li>
-        <li><a {ifCurrent Contact:*}class="current" {/ifCurrent}href="{link Contact:default}">kontakt</a></li>
+        <li><a {ifCurrent Articles:*}class="current" {/ifCurrent}href="{link Articles:default}">{_'články'}</a></li>
+        <li><a {ifCurrent Vegetable:*}class="current" {/ifCurrent}href="{link Vegetable:default}">{_'zelenina'}</a></li>
+        <li><a {ifCurrent Contact:*}class="current" {/ifCurrent}href="{link Contact:default}">{_'kontakt'}</a></li>
       </ul>  
     </div>
     {block left_column}
@@ -51,11 +51,11 @@
     <div class="footer">
       <div class="footer-bars-container">
         <div class="orders">
-          <h2>Rozvoz jídel Brno</h2>
+          <h2>{_'Rozvoz jídel Brno'}</h2>
           <p>603 564 978<br />rozvoz@madanmohan.cz</p>
         </div>
         <div class="share">
-          <p><span>Sdílet</span></p>
+          <p><span>{_'Sdílet'}</span></p>
             <div class="follow-links">
               <a href="http://www.facebook.com/sharer.php?u=http://www.madanmohan.cz" class="facebook" target="_blank">f</a>
               <a href="http://twitter.com/share?url=http://www.madanmohan.cz" target="_blank" class="twitter">t</a>
@@ -63,11 +63,11 @@
             </div>
         </div>
         <div class="prabhupad-bhavan">
-          <p><span>Projekt zajišťuje</span><br />
+          <p><span>{_'Projekt zajišťuje'}</span><br />
           <a href="http://www.prabhupadbhavan.cz" target="_blank"><img src="{$basePath}/images/pb-logo.png" alt="logo" /><br />
           prabhupadbhavan.cz</a></p>
         </div>
-        <div class="copyright">&copy; 2015 Madan Mohan<h3>rozvoz jídel Brno</h3>design by rasika.sks</div>
+        <div class="copyright">&copy; 2015 Madan Mohan<h3>{_'rozvoz jídel Brno'}</h3>design by rasika.sks</div>
         <div class="mahamantra"><p>Haré Kršna Haré Kršna Kršna Kršna Haré Haré Haré Ráma Haré Ráma Ráma Ráma Haré Haré &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></p></div>
       </div>
     </div>

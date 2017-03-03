@@ -108,13 +108,14 @@ div.menu-bar {
 }
 
 .menu-bar > a {
-  padding: 3px 60px 3px 20px;
-  float: right;
-  font-weight: bold;
-  letter-spacing: 3px;
-  color: #FFFFFF;
-  background-color: #ff9933;
-    transition: 0.3s;
+	text-transform: uppercase;
+	padding: 3px 60px 3px 20px;
+	float: right;
+	font-weight: bold;
+	letter-spacing: 3px;
+	color: #FFFFFF;
+	background-color: #ff9933;
+	transition: 0.3s;
 }
 
 .menu-bar > a:hover {
@@ -132,14 +133,22 @@ div.menu-bar {
 }
 
 .menu-bar .language-button {
+	text-transform: inherit;
     width: 50px;
+    color: #663200;
     background-size: 20px;
     background-repeat: no-repeat;
     background-position: 4px 5px;
+    background-color: transparent;
     letter-spacing: inherit;
     padding-right: 7px;
     margin-left: 10px;
     padding-left: 25px;
+}
+
+.menu-bar .language-button:hover {
+	color: #000000;
+    background-color: transparent;
 }
 
 .menu-bar .language-button.cs {
@@ -147,7 +156,9 @@ div.menu-bar {
 }
 
 .menu-bar .language-button.en {
+    padding-right: 3px;
     background-image: url("../images/en_flag.png");
+    padding-left: 29px;
 }
 
 div.left-column {
@@ -199,17 +210,38 @@ div.center-up {
   margin-bottom: 10px;
   background-color: #FFFFFF;
   box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5);
+
 }
 
-div.center-up div {
+div.center-up .free-label {
+	display: block;
     font-size: 26px;
-    margin: 0px;
+    text-align: left;
     color: #FFFFFF;
-    padding-top: 25px;   
-    padding-left: 35px;   
     letter-spacing: 5px;
     line-height: 45px;
+	padding-top: 25px;   
+    padding-left: 35px;   
+}
+
+div.center-up .menu-label {
+	display: block;
+	font-size: 25px;
+	letter-spacing: 2px;
     text-align: left;
+	color: #663200;
+	padding-top: 33px;
+	padding-left: 32px;
+}
+
+div.center-up .weight-label {
+	display: block;
+	font-size: 12px;
+	letter-spacing: 0.7px;
+    text-align: left;
+	color: #663200;
+	margin-top: -10px;
+	padding-left: 32px;
 }
 
 div.center-up h2 {
@@ -259,6 +291,19 @@ div.right-column h3 {
     margin: 0px;
     margin-top: 16px;
     margin-right: 5px;
+}
+
+div.right-column .welcome-title {
+	color: #96962d;
+	display: block;	
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+div.right-column p.en {
+  text-align: justify;
+  font-size: 16px;
+  margin-bottom: 4px;
 }
 
 div.right-column p {

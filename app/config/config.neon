@@ -23,8 +23,6 @@ nette:
 	debugger:
 		bar: [JanDrabek\MailPanel\MailPanel]
 
-
-
 services:
 	- App\AdminModule\Model\UserManager
 	- App\RouterFactory
