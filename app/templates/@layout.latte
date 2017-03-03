@@ -26,7 +26,7 @@
       <ul>
         <li><a {ifCurrent Home:*}class="current" {/ifCurrent}href="{link Home:default}"><h1>{_'rozvoz jídel Brno'}</h1></a></li>
         <li><a {ifCurrent Menu:default}class="current" {/ifCurrent}href="{link Menu:default}">menu</a></li>
-        <li><a {ifCurrent Articles:*}class="current" {/ifCurrent}href="{link Articles:default}">{_'články'}</a></li>
+        <li n:if="$locale == 'cs'"><a {ifCurrent Articles:*}class="current" {/ifCurrent}href="{link Articles:default}">{_'články'}</a></li>
         <li><a {ifCurrent Vegetable:*}class="current" {/ifCurrent}href="{link Vegetable:default}">{_'zelenina'}</a></li>
         <li><a {ifCurrent Contact:*}class="current" {/ifCurrent}href="{link Contact:default}">{_'kontakt'}</a></li>
       </ul>  
@@ -63,8 +63,7 @@
         </div>
         <div class="prabhupad-bhavan">
           <p><span>{_'Projekt zajišťuje'}</span><br />
-          <a href="http://www.prabhupadbhavan.cz" target="_blank"><img src="{$basePath}/images/pb-logo.png" alt="logo" /><br />
-          prabhupadbhavan.cz</a></p>
+          <a href="http://www.bhavan.cz" target="_blank"><img src="{$basePath}/images/pb-logo.png" alt="logo" /><br />bhavan.cz</a></p>
         </div>
         <div class="copyright">&copy; {? echo date('Y')} Madan Mohan<h3>{_'rozvoz jídel Brno'}</h3>design by rasika.sks</div>
         <div class="mahamantra"><p>Haré Kršna Haré Kršna Kršna Kršna Haré Haré Haré Ráma Haré Ráma Ráma Ráma Haré Haré &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></p></div>
