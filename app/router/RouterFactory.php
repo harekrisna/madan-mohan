@@ -43,7 +43,7 @@ class RouterFactory
 
 		$router[] = new Route('clanek/<id>', 'Articles:article');
 
-		$router[] = new Route('<locale=en>/<presenter>/<action>', array(
+		$router[] = new Route('en/<presenter>/<action>', array(
 			'presenter' => array(
 				Route::VALUE => "Home",
 				Route::FILTER_TABLE => array(
