@@ -84,7 +84,8 @@ class Lunch extends Table
 	        $lunch[$day]['disabled'] = false;
 	        $lunch[$day]['date'] = $this->getWeekDayDate($day, $offset);
 	        for($i = 1; $i <= 4; $i++) {
-	             $lunch[$day]['preparation'][$i] = "";
+	             $lunch[$day]['preparation'][$i] = array('title' => "",
+		    											 'title_en' => "");
 	        }
 	        $lunch[$day]['allergens'] = array();
 	    }
@@ -102,7 +103,8 @@ class Lunch extends Table
 	                                       ->order('position');
 	                           
 	        foreach($lunchPreparations as $lunchPreparation) {
-		    	$lunch[$day]['preparation'][$lunchPreparation->position] = $lunchPreparation->preparation->title;
+		    	$lunch[$day]['preparation'][$lunchPreparation->position] = array('title' => $lunchPreparation->preparation->title,
+		    																	 'title_en' => $lunchPreparation->preparation->title_en);
 				
 				if($allergens) {
 					$preparationAllergens = $lunchPreparation->preparation->related("preparation_allergen");

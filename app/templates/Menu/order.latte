@@ -29,7 +29,10 @@
                     {else}
                         <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
                         {foreach $day['preparation'] as $preparation}
-                            <li n:tag-if="$preparation != ''">{$preparation}</li>
+                            <li n:tag-if="$preparation['title'] != ''">
+                                {if $locale == 'cs'}{$preparation['title']}{/if}
+                                {if $locale == 'en'}{$preparation['title_en']}{/if}
+                            </li>
                         {/foreach}
                         </ul>
             <!--                        
@@ -69,7 +72,10 @@
                     {else}
                         <ul title="{foreach $day['allergens'] as $allergen}{first}Alergeny: {/first}{$allergen}{sep}, {/sep}{/foreach}">
                         {foreach $day['preparation'] as $preparation}
-                            <li n:tag-if="$preparation != ''">{$preparation}</li>
+                            <li n:tag-if="$preparation['title'] != ''">
+                                {if $locale == 'cs'}{$preparation['title']}{/if}
+                                {if $locale == 'en'}{$preparation['title_en']}{/if}
+                            </li>
                         {/foreach}
                         </ul>
                     {/if}

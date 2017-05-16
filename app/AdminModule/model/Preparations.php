@@ -12,11 +12,12 @@ class Preparations extends Table
 
   protected $tableName = 'preparation';
 
-  public function insert($title, $category_id)	{
+  public function insert($title, $title_en, $category_id)	{
   	try {
       	return $this->getTable()
                     ->insert(array('title' => $title,
-                               'category_id' => $category_id));
+                                   'title_en' => $title_en,
+                                   'category_id' => $category_id));
     } catch(\PDOException $e) {
         if($e->getCode() == 23000)
             return false;

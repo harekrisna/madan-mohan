@@ -74,6 +74,9 @@ class PreparationPresenter extends BasePresenter {
 	    $form->addText('title', 'Název:', 30, 255)
       	     ->setRequired('Zadejte prosím název.');
 
+      $form->addText('title_en', 'Název(EN):', 30, 512)
+           ->setRequired('Zadejte prosím anglický název.');
+
 	    $categories = $this->category
                            ->findAll()
                            ->order('title');
@@ -97,7 +100,7 @@ class PreparationPresenter extends BasePresenter {
         $values = $form->getValues();
         
         $ok = $this->preparation
-                   ->insert($values->title, $values->category_id);
+                   ->insert($values->title, $values->title_en, $values->category_id);
         
         if($ok)
             $this->flashMessage('Preparace byla přidána.', 'success');
