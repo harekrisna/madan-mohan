@@ -22,7 +22,7 @@
             <table id="order-table" class="order-table">
                 {foreach $lunch as $day}
                 <tr>
-                    <td class="day-circle"><div{if $today == $iterator->counter} class="today"{/if}>{_$day['abbr']}</div></td>
+                    <td class="day-circle {$locale}"><div{if $today == $iterator->counter} class="today"{/if}>{_$day['abbr']}</div></td>
                     <td>
                     {if $day['nocook']}
                         <span class="nocook">{_'nevaříme'}</span>

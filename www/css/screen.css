@@ -798,6 +798,11 @@ table.order-table {
   background-color: #999933; 
 }
 
+.order-table td.en div {
+  font-size: 19px;
+  line-height: 37px;
+}
+
 .order-table td div.today {
   background-color: #ff9933;
 }
