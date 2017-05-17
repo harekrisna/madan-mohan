@@ -96,7 +96,7 @@ final class MenuPresenter extends BasePresenter {
                  ->delete($lunch->id);
         }
 
-        $this->template->lunch[$day]['preparation'][$position] = "";
+        $this->template->lunch[$day]['preparation'][$position]['title'] = "";
         $this->template->lunch[$day]['date'] = $lunch->lunch_date;
         
         $snippet_name = $day."_".$position;
@@ -131,7 +131,7 @@ final class MenuPresenter extends BasePresenter {
             $old_pos = $pre->fetch()->position;
             $this->lunchPreparation->delete($lunch_id, $old_pos);
             
-            $this->template->lunch[$day]['preparation'][$old_pos] = "";
+            $this->template->lunch[$day]['preparation'][$old_pos]['title'] = "";
 
             $this->payload->snippet_old_pos = $day."_".$old_pos;
             $this->redrawControl($day."_".$old_pos);
@@ -141,15 +141,13 @@ final class MenuPresenter extends BasePresenter {
         $preparation = $this->preparation
                             ->find($preparation_id);
 
-        $this->template->lunch[$day]['preparation'][$position] = $preparation->title;
-        
+        $this->template->lunch[$day]['preparation'][$position]['title'] = $preparation->title;
          
         $snippet_name = $day."_".$position;
         $this->payload->snippet = $snippet_name;
         $this->template->lunch[$day]['id'] = $lunch_id;
         $this->template->lunch[$day]['date'] = $lunch_date;
         $this->redrawControl($snippet_name);
-        
     }
     	
     public function handleChangeCookFlag($lunch_date, $nocook_flag) {
@@ -176,10 +174,10 @@ final class MenuPresenter extends BasePresenter {
         $day = strtolower(date('l', strtotime($lunch_date)));
         $this->template->lunch[$day]['nocook'] = $nocook_flag;
         $this->template->lunch[$day]['date'] = $lunch_date;
-        $this->template->lunch[$day]['preparation'][1] = "";
-        $this->template->lunch[$day]['preparation'][2] = "";
-        $this->template->lunch[$day]['preparation'][3] = "";
-        $this->template->lunch[$day]['preparation'][4] = "";
+        $this->template->lunch[$day]['preparation'][1]['title'] = "";
+        $this->template->lunch[$day]['preparation'][2]['title'] = "";
+        $this->template->lunch[$day]['preparation'][3]['title'] = "";
+        $this->template->lunch[$day]['preparation'][4]['title'] = "";
                                                             
         $this->redrawControl($day);        
     }     

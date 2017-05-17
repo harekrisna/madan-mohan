@@ -34,7 +34,7 @@
             <td n:snippet="monday">
                 <ul{if $lunch['monday']['nocook']} class="nocook"{/if}>
                    <li n:snippet="monday_1">
-                     {var $title = $lunch['monday']['preparation'][1]}
+                     {var $title = $lunch['monday']['preparation'][1]['title']}
                      <div data-lunch_date="{$lunch['monday']['date']}" data-position="1" data-day="monday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['monday']['id'], 1, 'monday'"></a>
@@ -42,7 +42,7 @@
                      </div>                     
                    </li>
                    <li n:snippet="monday_2">
-                     {var $title = $lunch['monday']['preparation'][2]}
+                     {var $title = $lunch['monday']['preparation'][2]['title']}
                      <div data-lunch_date="{$lunch['monday']['date']}" data-position="2" data-day="monday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['monday']['id'], 2, 'monday'"></a>
@@ -50,7 +50,7 @@
                      </div>
                    </li>
                    <li n:snippet="monday_3">
-                     {var $title = $lunch['monday']['preparation'][3]}
+                     {var $title = $lunch['monday']['preparation'][3]['title']}
                      <div data-lunch_date="{$lunch['monday']['date']}" data-position="3" data-day="monday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['monday']['id'], 3, 'monday'"></a>
@@ -58,7 +58,7 @@
                      </div>
                    </li>
                    <li n:snippet="monday_4">
-                     {var $title = $lunch['monday']['preparation'][4]}
+                     {var $title = $lunch['monday']['preparation'][4]['title']}
                      <div data-lunch_date="{$lunch['monday']['date']}" data-position="4" data-day="monday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['monday']['id'], 4, 'monday'"></a>
@@ -77,7 +77,7 @@
             <td n:snippet="tuesday">
                 <ul{if $lunch['tuesday']['nocook']} class="nocook"{/if}>
                    <li n:snippet="tuesday_1">
-                     {var $title = $lunch['tuesday']['preparation'][1]}
+                     {var $title = $lunch['tuesday']['preparation'][1]['title']}
                      <div data-lunch_date="{$lunch['tuesday']['date']}" data-position="1" data-day="tuesday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['tuesday']['id'], 1, 'tuesday'"></a>
@@ -85,7 +85,7 @@
                      </div>
                    </li>
                    <li n:snippet="tuesday_2">
-                     {var $title = $lunch['tuesday']['preparation'][2]}
+                     {var $title = $lunch['tuesday']['preparation'][2]['title']}
                      <div data-lunch_date="{$lunch['tuesday']['date']}" data-position="2" data-day="tuesday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['tuesday']['id'], 2, 'tuesday'"></a>
@@ -93,7 +93,7 @@
                      </div>
                    </li>
                    <li n:snippet="tuesday_3">
-                     {var $title = $lunch['tuesday']['preparation'][3]}
+                     {var $title = $lunch['tuesday']['preparation'][3]['title']}
                      <div data-lunch_date="{$lunch['tuesday']['date']}" data-position="3" data-day="tuesday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['tuesday']['id'], 3, 'tuesday'"></a>
@@ -101,7 +101,7 @@
                      </div>
                    </li>
                    <li n:snippet="tuesday_4">
-                     {var $title = $lunch['tuesday']['preparation'][4]}
+                     {var $title = $lunch['tuesday']['preparation'][4]['title']}
                      <div data-lunch_date="{$lunch['tuesday']['date']}" data-position="4" data-day="tuesday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['tuesday']['id'], 4, 'tuesday'"></a>
@@ -120,7 +120,7 @@
             <td n:snippet="wednesday">
                 <ul{if $lunch['wednesday']['nocook']} class="nocook"{/if}>
                    <li n:snippet="wednesday_1">
-                     {var $title = $lunch['wednesday']['preparation'][1]}
+                     {var $title = $lunch['wednesday']['preparation'][1]['title']}
                      <div data-lunch_date="{$lunch['wednesday']['date']}" data-position="1" data-day="wednesday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['wednesday']['id'], 1, 'wednesday'"></a>
@@ -128,7 +128,7 @@
                      </div>
                    </li>
                    <li n:snippet="wednesday_2">
-                     {var $title = $lunch['wednesday']['preparation'][2]}
+                     {var $title = $lunch['wednesday']['preparation'][2]['title']}
                      <div data-lunch_date="{$lunch['wednesday']['date']}" data-position="2" data-day="wednesday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['wednesday']['id'], 2, 'wednesday'"></a>
@@ -136,7 +136,7 @@
                      </div>
                    </li>
                    <li n:snippet="wednesday_3">
-                     {var $title = $lunch['wednesday']['preparation'][3]}
+                     {var $title = $lunch['wednesday']['preparation'][3]['title']}
                      <div data-lunch_date="{$lunch['wednesday']['date']}" data-position="3" data-day="wednesday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['wednesday']['id'], 3, 'wednesday'"></a>
@@ -144,7 +144,7 @@
                      </div>
                    </li>
                    <li n:snippet="wednesday_4">
-                     {var $title = $lunch['wednesday']['preparation'][4]}
+                     {var $title = $lunch['wednesday']['preparation'][4]['title']}
                      <div data-lunch_date="{$lunch['wednesday']['date']}" data-position="4" data-day="wednesday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['wednesday']['id'], 4, 'wednesday'"></a>
@@ -162,7 +162,7 @@
             <td n:snippet="thursday">
                 <ul{if $lunch['thursday']['nocook']} class="nocook"{/if}>
                    <li n:snippet="thursday_1">
-                     {var $title = $lunch['thursday']['preparation'][1]}
+                     {var $title = $lunch['thursday']['preparation'][1]['title']}
                      <div data-lunch_date="{$lunch['thursday']['date']}" data-position="1" data-day="thursday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['thursday']['id'], 1, 'thursday'"></a>
@@ -170,7 +170,7 @@
                      </div>
                    </li>
                    <li n:snippet="thursday_2">
-                     {var $title = $lunch['thursday']['preparation'][2]}
+                     {var $title = $lunch['thursday']['preparation'][2]['title']}
                      <div data-lunch_date="{$lunch['thursday']['date']}" data-position="2" data-day="thursday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['thursday']['id'], 2, 'thursday'"></a>
@@ -178,7 +178,7 @@
                      </div>
                    </li>
                    <li n:snippet="thursday_3">
-                     {var $title = $lunch['thursday']['preparation'][3]}
+                     {var $title = $lunch['thursday']['preparation'][3]['title']}
                      <div data-lunch_date="{$lunch['thursday']['date']}" data-position="3" data-day="thursday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['thursday']['id'], 3, 'thursday'"></a>
@@ -186,7 +186,7 @@
                      </div>
                    </li>
                    <li n:snippet="thursday_4">
-                     {var $title = $lunch['thursday']['preparation'][4]}
+                     {var $title = $lunch['thursday']['preparation'][4]['title']}
                      <div data-lunch_date="{$lunch['thursday']['date']}" data-position="4" data-day="thursday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['thursday']['id'], 4, 'thursday'"></a>
@@ -205,7 +205,7 @@
             <td n:snippet="friday">
                 <ul{if $lunch['friday']['nocook']} class="nocook"{/if}>
                    <li n:snippet="friday_1">
-                     {var $title = $lunch['friday']['preparation'][1]}
+                     {var $title = $lunch['friday']['preparation'][1]['title']}
                      <div data-lunch_date="{$lunch['friday']['date']}" data-position="1" data-day="friday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['friday']['id'], 1, 'friday'"></a>
@@ -213,7 +213,7 @@
                      </div>
                    </li>
                    <li n:snippet="friday_2">
-                     {var $title = $lunch['friday']['preparation'][2]}
+                     {var $title = $lunch['friday']['preparation'][2]['title']}
                      <div data-lunch_date="{$lunch['friday']['date']}" data-position="2" data-day="friday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['friday']['id'], 2, 'friday'"></a>
@@ -221,7 +221,7 @@
                      </div>
                    </li>
                    <li n:snippet="friday_3">
-                     {var $title = $lunch['friday']['preparation'][3]}
+                     {var $title = $lunch['friday']['preparation'][3]['title']}
                      <div data-lunch_date="{$lunch['friday']['date']}" data-position="3" data-day="friday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['friday']['id'], 3, 'friday'"></a>
@@ -229,7 +229,7 @@
                      </div>
                    </li>
                    <li n:snippet="friday_4">
-                     {var $title = $lunch['friday']['preparation'][4]}
+                     {var $title = $lunch['friday']['preparation'][4]['title']}
                      <div data-lunch_date="{$lunch['friday']['date']}" data-position="4" data-day="friday" n:class="$title == '' ? empty">&nbsp;
                      {if $title != ""}
                         <span>{$title}</span><a class="remove" n:href="removeLunchPreparation!, $lunch['friday']['id'], 4, 'friday'"></a>
