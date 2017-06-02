@@ -48,7 +48,7 @@
 </style>
 {foreach $cartages as $cartage}
 	{continueIf $cartage->count() == 0}
-<table class="printout">
+<table class="printout"{if !$iterator->last} style="page-break-before: always;"{/if}>
 <thead>
 	<tr>
 		<th style="width: 300px;">Jméno</th>
