@@ -1,0 +1,43 @@
+{block title}Farma Krišnův Dvůr{/block}
+{block head}
+{include parent}
+    <link href="{$basePath}/css/jquery.scrollbar.css" rel="stylesheet" type="text/css" />
+    <style>
+	.link {
+		color: #ff9933;
+		text-decoration: underline;
+	}
+
+	.link:hover {
+		text-decoration: none;
+	}
+</style>
+{/block}
+{block left_column}
+<div class="left-column">
+    <img src="{$basePath}/images/farma-slide.jpg" />
+</div>
+{/block}
+
+{block content}
+<div id="main" style="display: flex">
+<div id="article">
+<h1>Život v rytmu ročních období - farma Nava Gokula</h1>
+<p>Ve světě semaforů, sirén a nekonečné řeky automobilů začínáme vnímat, že naše potřeby často uspokojí pohled na rozkvetlý ovocný strom, zpěv ptáků brzkého rána i procházka městskými lesoparky.</p>
+<p>Bytostně můžeme vnímat klid, harmonii a vyrovnanost života mimo městskou zástavbu i jako více přirozený a naladěný našim lidským potřebám. Čerstvá zelenina, šťavnaté ovoce, sladký zlatavý med. Toto jsou pravé poklady, kterými můžeme obohatit naše životy - zážitky z čisté chuti.</p>
+<p>Na farmě Nava Gokula žijí novodobí průkopníci návratu k původnímu způsobu života. Vložili důvěru do generacemi prověřeného védského expertního způsobu získávání obživy a udržování svých rodin se závislostí na Bohu - obdělávání půdy a ochraně krav.</p>
+
+<p>Madan Mohan podporuje tento projekt návratu k přirozenému způsobu života a nabízí pro vás možnost se sami přesvědčit o jeho výsledcích. Farma nabízí prodej svých zeleninových bedýnek a produktů s dovozem do vašich domovů.</p>
+<p>(více viz. <a class="link" href="http://biobedynky.webnode.cz" target="_blank">http://biobedynky.webnode.cz</a>, <a class="link" href="http://www.facebook.com/ekozelenina" target="_blank">www.facebook.com/ekozelenina</a>)</p>
+
+
+</div>
+</div>
+{/block}
+{block scripts}
+{include parent}
+  <script src="{$basePath}/js/jquery.scrollbar.min.js"></script>
+  <script>
+      $("#article").mCustomScrollbar();
+</script>
+{/block}
