@@ -105,7 +105,10 @@ table#order-table {
         <td>
             <ul>
             {foreach $day['preparation'] as $preparation}
-                <li n:tag-if="$preparation != ''">{$preparation}</li>
+                <li n:tag-if="$preparation['title'] != ''">
+                    {if $locale == 'cs'}{$preparation['title']}{/if}
+                    {if $locale == 'en'}{$preparation['title_en']}{/if}
+                </li>
             {/foreach}
             </ul>
         </td>
@@ -124,7 +127,10 @@ table#order-table {
         <td>
             <ul>
             {foreach $day['preparation'] as $preparation}
-                <li n:tag-if="$preparation != ''">{$preparation}</li>
+                <li n:tag-if="$preparation['title'] != ''">
+                    {if $locale == 'cs'}{$preparation['title']}{/if}
+                    {if $locale == 'en'}{$preparation['title_en']}{/if}
+                </li>
             {/foreach}
             </ul>
         </td>

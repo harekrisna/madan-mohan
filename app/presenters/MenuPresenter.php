@@ -246,6 +246,9 @@ class MenuPresenter extends BasePresenter {
         $email_template->next_week_amount = $next_week_amount;
         $email_template->total_price = $total_price;
 
+        $email_template->locale = $this->locale;
+
+
         if($values['email'] != "") {
             $from = $values['email'];
             
