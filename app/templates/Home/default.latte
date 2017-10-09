@@ -9,12 +9,12 @@
     <div class="center-down"></div>
   </div>
   <div class="right-column">
-    <div>
+    <div n:class="$locale == 'en' ? 'en'" >
       <img n:if="$locale == 'cs'" src="{$basePath}/images/vitejte.png" alt="vitejte" />
       <span n:if="$locale == 'en'" class="welcome-title">Welcome</span>
       <p n:if="$locale == 'cs'">Madan Móhan pro Vás připravuje vydatné vegetariánské obědy dle tradičních receptur inspirovaných staroindickou kuchyní i rafinované speciality, které rád vyzkouší každý opravdový gurmán. I ve všední 
 den je možné zažít něco mimořádného. Od toho jsme tu pro Vás.</p>
-<p class="en" n:if="$locale == 'en'">Madan Mohan is preparing a hearty vegetarian lunch according to traditional recipes inspired by the ancient Indian cuisine and refined specialties like to try every true gourmet. Even on a weekday, it is possible to experience something extraordinary. That's what we are here for you.</p>
+<p class="en" n:if="$locale == 'en'">Madan Mohan is preparing a hearty vegetarian lunch according to traditional recipes inspired by the ancient Indian cuisine and refined specialities which will like to try every true gourmet.<br />Even on a weekday, it is possible to experience something extraordinary. That's what we are here for you.</p>
 
 
       <img src="{$basePath}/images/prataparudra.png" alt="prataparudra" />

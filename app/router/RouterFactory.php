@@ -41,7 +41,7 @@ class RouterFactory
 			'locale' => 'en'
 		));
 
-		$router[] = new Route('clanek/<id>', 'Articles:article');
+		$router[] = new Route('clanek/<template>[/<locale=cs>]', 'Articles:article');
 
 		$router[] = new Route('en/<presenter>/<action>', array(
 			'presenter' => array(

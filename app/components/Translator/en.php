@@ -43,7 +43,7 @@ return array(
     'Objednávky na týž den přijímáme do' => 'Orders of lunches are accepted on this day till',
     'Zavřít' => 'Close',
     'hod' => 'am',
-    'Přijímáme pouze stravenky Sodexo' => 'We only accept Sodexo meal vouchers',
+    'Akceptujeme stravenky Sodexo a Ticket Restaurant' => 'We accept Sodexo and Ticket Restaurant meal vouchers',
     'Informace o alergenech' => 'Information about allergens',
     'Jídla mohou obsahovat tyto alergeny' => 'Meals may contain the following allergens',
     'celer, kešu ořechy, lepek, lískové ořechy, mandle, mléko a výrobky z&nbsp;něj, para ořechy, pekanové ořechy, pistácie, podzemnice olejná (arašídy), semena slunečnice, semínka hořčice, sezamová semena, vlašské ořechy' => 'celery, cashew nuts, gluten, hazelnuts, almonds, milk and dairy products, Brazil nuts, pecans, pistachios, groundnuts (peanuts), sunflower seeds, mustard seeds, sesame seeds',

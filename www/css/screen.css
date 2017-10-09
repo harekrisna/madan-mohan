@@ -280,6 +280,10 @@ div.right-column > div {
   height: 400px;
 }
 
+div.right-column > div.en {
+  width: 264px;
+}
+
 div.right-column h2 {
     color: #999933;
     font-size: 20px;
